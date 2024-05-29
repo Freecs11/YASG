@@ -55,4 +55,4 @@ The game is designed to use memory efficiently, ensuring smooth performance even
 
 ## Contibuters:
 - Rachid Bouhmad 
-- Thinh Truong 
+- Do Truong Thinh TRUONG
