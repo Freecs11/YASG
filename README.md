@@ -6,7 +6,7 @@ Welcome to **YASG (Yet Another Survivors Game)**, a 2D game developed in Java us
 
 ## Features
 
-- **Minimal Collision and Sprite Handling**: Focused on simplicity and efficiency.
+- **Minimal LibGDX usage**: we used LibGDX for simple sprite handling and box collision .
 - **Procedural Generation**: 
   - **Wave Function Collapse**: Creates intricate and varied environments.
   - **Noise-Based Generation**: Uses Perlin noise for natural-looking terrains.
@@ -46,6 +46,9 @@ Noise-based procedural generation uses algorithms like Perlin noise to create re
 
 ## Pathfinding: Dijkstra Flowfield
 Dijkstra's flowfield algorithm provides a robust solution for pathfinding, allowing game entities to navigate complex environments efficiently, we chose this solution because of the nature of our game where the enemies all navigate towards the player.
+
+Flow Feild on debug Mode : 
+![Flow Feild in the game](Flow.png)
 
 - Link to article explaining Dijkstra’s Algorithm : [here](https://www.researchgate.net/figure/Navigation-flow-field-produced-by-Dijkstras-algorithm-stored-in-the-Navigation-layer_fig2_221254772)
 - Link to article explaining Flow Field Pathfinding : [here](https://leifnode.com/2013/12/flow-field-pathfinding/)
