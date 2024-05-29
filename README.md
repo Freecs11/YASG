@@ -20,13 +20,12 @@ To run the game locally, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/YASG.git
+   git clone https://github.com/Freecs11/YASG.git
    cd YASG
 
 2. **Build the project using Gradle**:
    ```bash
-   git clone https://github.com/yourusername/YASG.git
-   cd YASG
+   ./gradlew desktop:run
 
 ## Gameplay
 In YASG, players navigate a procedurally generated world, surviving against waves of enemies. Using different attacks, offering new challenges and experiences.
