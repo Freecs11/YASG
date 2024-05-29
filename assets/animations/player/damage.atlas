@@ -1,0 +1,48 @@
+
+damage.png
+size: 206, 35
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+damage
+  rotate: false
+  xy: 104, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+damage
+  rotate: false
+  xy: 36, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+damage
+  rotate: false
+  xy: 172, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+damage
+  rotate: false
+  xy: 70, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+damage
+  rotate: false
+  xy: 2, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1
+damage
+  rotate: false
+  xy: 138, 2
+  size: 32, 31
+  orig: 32, 31
+  offset: 0, 0
+  index: -1

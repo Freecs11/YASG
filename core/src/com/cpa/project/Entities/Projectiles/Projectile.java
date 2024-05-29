@@ -20,9 +20,6 @@ public abstract class Projectile extends Entity{
 
         // Move the projectile
         this.sprite.translate(this.velocity.x * this.speed * dt, this.velocity.y * this.speed * dt);
-//        float angle = (float) Math.atan2(this.velocity.y, this.velocity.x);
-//        this.sprite.setRotation(angle);
-        // NEED TO HAVE COLLISION DETECTION WITH TILES HERE
         // Collision detection with entities
         if (this.entityType == EntityType.PLAYER_PROJECTILE) {
             for (Entity entity : PlayState.enemies) {

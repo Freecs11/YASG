@@ -1,0 +1,41 @@
+
+attack.png
+size: 220, 37
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+attack
+  rotate: false
+  xy: 94, 2
+  size: 44, 33
+  orig: 44, 33
+  offset: 0, 0
+  index: -1
+attack
+  rotate: false
+  xy: 2, 2
+  size: 44, 33
+  orig: 44, 33
+  offset: 0, 0
+  index: -1
+attack
+  rotate: false
+  xy: 140, 2
+  size: 44, 33
+  orig: 44, 33
+  offset: 0, 0
+  index: -1
+attack
+  rotate: false
+  xy: 48, 2
+  size: 44, 33
+  orig: 44, 33
+  offset: 0, 0
+  index: -1
+attack
+  rotate: false
+  xy: 186, 2
+  size: 32, 33
+  orig: 32, 33
+  offset: 0, 0
+  index: -1

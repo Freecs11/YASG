@@ -1,0 +1,41 @@
+
+walk_d.png
+size: 92, 36
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+walk_d
+  rotate: false
+  xy: 20, 2
+  size: 16, 32
+  orig: 16, 32
+  offset: 0, 0
+  index: -1
+walk_d
+  rotate: false
+  xy: 74, 2
+  size: 16, 32
+  orig: 16, 32
+  offset: 0, 0
+  index: -1
+walk_d
+  rotate: false
+  xy: 2, 2
+  size: 16, 32
+  orig: 16, 32
+  offset: 0, 0
+  index: -1
+walk_d
+  rotate: false
+  xy: 38, 2
+  size: 16, 32
+  orig: 16, 32
+  offset: 0, 0
+  index: -1
+walk_d
+  rotate: false
+  xy: 56, 2
+  size: 16, 32
+  orig: 16, 32
+  offset: 0, 0
+  index: -1

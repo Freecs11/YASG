@@ -3,6 +3,8 @@ package com.cpa.project.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -12,20 +14,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.cpa.project.Utils.AssetManager;
+import com.cpa.project.Utils.AudioHandler;
+
+import static com.cpa.project.Survivors.audioHandler;
 
 public class MenuScreen implements Screen {
     private final Stage menuStage = new Stage();
     private Game game;
 
+    private final Music ButtonClickSound;
+
     public MenuScreen(Game game){
         Gdx.input.setInputProcessor(menuStage);
         this.game = game;
+        audioHandler.playMusic("menu");
+        ButtonClickSound = audioHandler.loadMusic("audio/click.wav");
     }
 
 
     @Override
     public void show() {
-        Skin skin = new Skin(Gdx.files.internal("skin/OS Eight.json"));
+        Skin skin = AssetManager.getSkin();
         Table menuTable = new Table(skin);
         menuTable.setFillParent(true);
         menuTable.defaults().pad(15f);
@@ -36,6 +46,8 @@ public class MenuScreen implements Screen {
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.postRunnable(() -> audioHandler.addSoundEffect("ButtonClick" , ButtonClickSound));
+                Gdx.app.postRunnable(() -> dispose());
                 game.setScreen(new GameScreen(game));
             }
         });
@@ -45,16 +57,21 @@ public class MenuScreen implements Screen {
         guideButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.postRunnable(() -> audioHandler.addSoundEffect("ButtonClick" , ButtonClickSound));
+                Gdx.app.postRunnable(() -> dispose());
                 game.setScreen(new GuideScreen(game));
             }
         });
         menuTable.add(guideButton).width(200f).height(50f);
         menuTable.row();
         TextButton exitButton = new TextButton("Exit", skin);
+
         exitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                Gdx.app.postRunnable(() -> audioHandler.addSoundEffect("ButtonClick" , ButtonClickSound));
+//                dispose();
+                System.exit(0);
             }
         });
         menuTable.add(exitButton).width(200f).height(50f);
@@ -76,21 +93,23 @@ public class MenuScreen implements Screen {
 
     @Override
     public void pause() {
-
+        audioHandler.pauseMusic("menu");
     }
 
     @Override
     public void resume() {
-
+        audioHandler.playMusic("menu");
     }
 
     @Override
     public void hide() {
         menuStage.clear();
+        audioHandler.stopMusic("menu");
     }
 
     @Override
     public void dispose() {
         menuStage.dispose();
+        audioHandler.disposeSound(ButtonClickSound);
     }
 }

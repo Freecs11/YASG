@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.cpa.project.Entities.Projectiles.SmallFireBall;
 import com.cpa.project.State.PlayState;
+import com.cpa.project.Utils.AssetManager;
 
 public class AutoFireBall extends Spell {
 
@@ -47,7 +48,7 @@ public class AutoFireBall extends Spell {
         }
         for (int i = 0; i < numOfFireballs; i++) {
             SmallFireBall fireBall = new SmallFireBall(playerPosition,
-                    new Sprite(new Texture("firebullet.png")),
+                    new Sprite(AssetManager.getAutofireball()),
                     new Vector2(bulletDir).rotateDeg(i * 360f / numOfFireballs),
                     this.speed,
                     this.damage);

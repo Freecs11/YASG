@@ -3,6 +3,8 @@ package com.cpa.project.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -11,20 +13,26 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.cpa.project.Utils.AssetManager;
+
+import static com.cpa.project.Survivors.audioHandler;
 
 public class GameOverScreen implements Screen {
 
     private final Stage gameOverStage = new Stage();
     Game game;
+    private final Music ButtonClickSound;
 
     public GameOverScreen(Game game) {
         Gdx.input.setInputProcessor(gameOverStage);
+        audioHandler.playMusic("gameover");
         this.game = game;
+        ButtonClickSound = audioHandler.loadMusic("audio/click.wav");
     }
 
     @Override
     public void show() {
-        Skin skin = new Skin(Gdx.files.internal("skin/OS Eight.json"));
+        Skin skin = AssetManager.getSkin();
         Table gameOverTable = new Table();
         gameOverTable.setFillParent(true);
         Texture gameOverTexture = new Texture(Gdx.files.internal("GameOver.png"));
@@ -37,8 +45,9 @@ public class GameOverScreen implements Screen {
         returnMenu.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.postRunnable(() -> audioHandler.addSoundEffect("ButtonClick" , ButtonClickSound));
+                Gdx.app.postRunnable(() -> dispose());
                 game.setScreen(new MenuScreen(game));
-                dispose();
             }
         });
         gameOverTable.row();
@@ -61,16 +70,17 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void pause() {
-
+        audioHandler.pauseMusic("gameover");
     }
 
     @Override
     public void resume() {
-
+        audioHandler.playMusic("gameover");
     }
 
     @Override
     public void hide() {
+        audioHandler.stopMusic("gameover");
         gameOverStage.clear();
     }
 

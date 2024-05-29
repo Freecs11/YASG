@@ -3,27 +3,34 @@ package com.cpa.project.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import sun.tools.jconsole.Tab;
+import com.cpa.project.Utils.AssetManager;
+
+import static com.cpa.project.Survivors.audioHandler;
 
 public class GuideScreen implements Screen {
 
     private final Stage guideStage = new Stage();
     Game game;
+    private final Music ButtonClickSound;
 
     public GuideScreen(Game game) {
         Gdx.input.setInputProcessor(guideStage);
         this.game = game;
+        audioHandler.playMusic("menu");
+        ButtonClickSound = audioHandler.loadMusic("audio/click2.wav");
     }
 
     @Override
     public void show() {
-        Skin skin = new Skin(Gdx.files.internal("skin/OS Eight.json"));
+        Skin skin = AssetManager.getSkin();
         Table guideTable = new Table();
         guideTable.setFillParent(true);
         guideTable.defaults().spaceBottom(10f);
@@ -37,13 +44,13 @@ public class GuideScreen implements Screen {
         spells.setFontScale(1.5f);
         guideTable.add(spells);
         guideTable.row();
-        Texture sonicWave = new Texture(Gdx.files.internal("icons/BTNInnerFire.jpg"));
+        Texture sonicWave = AssetManager.getSonicWave();
         Image sonicWaveImage = new Image(sonicWave);
-        Texture fireBall = new Texture(Gdx.files.internal("icons/BTNFireBolt.jpg"));
+        Texture fireBall = AssetManager.getFireBall();
         Image fireBallImage = new Image(fireBall);
-        Texture autoFireBall = new Texture(Gdx.files.internal("icons/BTNOrbOfFire.jpg"));
+        Texture autoFireBall = AssetManager.getAutoFireBall();
         Image autoFireBallImage = new Image(autoFireBall);
-        Texture heal = new Texture(Gdx.files.internal("icons/BTNHeal.jpg"));
+        Texture heal = AssetManager.getHeal();
         Image healImage = new Image(heal);
         guideTable.add(fireBallImage).width(50f).height(50f).spaceTop(10f);
         guideTable.row();
@@ -67,6 +74,8 @@ public class GuideScreen implements Screen {
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.postRunnable(() -> audioHandler.addSoundEffect("ButtonClick" , ButtonClickSound));
+                Gdx.app.postRunnable(() -> dispose());
                 game.setScreen(new MenuScreen(game));
             }
         });
@@ -91,12 +100,12 @@ public class GuideScreen implements Screen {
 
     @Override
     public void pause() {
-
+        audioHandler.pauseMusic("menu");
     }
 
     @Override
     public void resume() {
-
+        audioHandler.playMusic("menu");
     }
 
     @Override
